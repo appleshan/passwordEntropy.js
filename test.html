@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+	<head>
+		<title>password entropy tester</title>
+		<link rel="stylesheet" type="text/css" href="css/entropy.css">
+	</head>
+	<body>
+		<h1>password entropy tester</h1>
+		<div id="form">
+			<div class="row">
+				<div class="col lbl">password:</div>
+				<div class="col">
+					<input type="text" name="pass" id="pass" /> 
+				</div>
+			</div>
+			<div class="row">
+				<div class="col lbl">entropy:</div>
+				<div class="col" id="result"><span class="very-weak">0 bits = very weak</span></div>
+			</div>
+		</div>
+		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  		<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="js/jquery-1.7.2.min.js"><\/script>')</script>
+  		<script type="text/javascript" src="js/passwordEntropy.js"></script>
+	</body>
+</html>
