@@ -1,0 +1,6 @@
+javascript password entropy tester.
+a simple script to test the strength of a password
+
+demo   :: http://lab.xero.nu/passwordEntropy
+code   :: http://code.xero.nu/passwordEntropy.js
+mirror :: http://github.com/xero/passwordEntropy.js
