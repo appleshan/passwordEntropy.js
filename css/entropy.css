@@ -46,6 +46,18 @@ input {
 	width: 15%;
 	text-align: right;
 }
+#footer {
+	width: 100%;
+	font-size: 14pt;
+	font-weight: normal;
+	margin: 10px 10px 0px 0px;
+	text-align: right;
+}
+#footer a, #footer a:visited {
+	color: #fff;
+	text-decoration: none;
+	border-bottom: 1px solid #666;
+}
 .very-weak {
 	color: #ff0000;
 }
