@@ -56,19 +56,19 @@
 					entropy = 0;
 				}
 				//---calculate strength
-				if(entropy > 75) {
+				if(entropy >= 75) {
 					strength = 4;
-				} else if(entropy <= 75 && entropy > 50) {
+				} else if(entropy >= 50) {
 					strength = 3;
-				} else if(entropy <= 50 && entropy > 25) {
+				} else if(entropy >= 25) {
 					strength = 2;
-				} else if(entropy <= 25 && entropy > 5) {
+				} else if(entropy >= 5) {
 					strength = 1;
 				} else {
 					strength = 0;
 				}
 				//---display results
-				if(colorize) {
+				if(settings.colorize) {
 					$(settings.display).removeClass(settings.strengths.join(' ')).addClass(settings.strengths[strength]);					
 				}
 				$(settings.display).html(settings.showBits ? entropy+' bits = '+settings.strengths[strength].replace('-',' ') : settings.strengths[strength].replace('-',' '));
