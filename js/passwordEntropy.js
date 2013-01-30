@@ -1,3 +1,8 @@
+/* passwordEntropy.js 
+   http://code.xero.nu/passwordEntropy.js
+   (cc) xero harrison MMXIII 
+   http://creativecommons.org/licenses/by-sa/3.0/ 
+*/
 (function( $ ) {
 	$.fn.passwordEntropy = function(options) {
 		//---default settings
