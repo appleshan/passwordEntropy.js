@@ -1,6 +1,6 @@
 (function( $ ) {
 	$.fn.passwordEntropy = function(options) {
-
+		//---default settings
 		var settings = $.extend( {
 			'display'	: '#results',
 			'colorize'	: true,
@@ -8,6 +8,7 @@
 		}, options);
 
 		return this.each(function() {
+			//---bind to keyboard input
 			$(this).bind('keyup', function() {
 				var pass,
 					len,
@@ -25,7 +26,7 @@
 					strength,
 					color,
 					result;
-
+				//---calculate weight
 				pass = $(this).val();
 				len = pass.length;
 				lowerCount = pass.match(/[a-z]/) ? pass.match(/[a-z]/g).length : 0;
@@ -44,6 +45,7 @@
 				if(symbolCount > 0) {
 					symbol = (33 - symbolCount) + symbolCount;
 				}
+				//---calculate entropy
 				total = upper + lower + number + symbol;
 				a = total.toFixed(2);
 				b = len.toFixed(2);
@@ -51,6 +53,7 @@
 				if(isNaN(strength)) {
 					strength = 0;
 				}
+				//---calculate strength
 				if(strength > 75) {
 					color = 'very-strong';
 				} else if(strength <= 75 && strength > 50) {
@@ -62,12 +65,14 @@
 				} else {
 					color = 'very-weak';
 				}
+				//---setup output
 				result = settings.showBits ? strength+' bits = '+color.replace('-',' ') : color.replace('-',' ');
 				if(settings.colorize) {
 					result = '<span class="'+color+'">'+result+'</span>';
 				}
+				//---display results
 				$(settings.display).html(result);
 			});
 		});
 	};
-})( jQuery );
+})(jQuery);
