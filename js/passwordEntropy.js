@@ -4,7 +4,8 @@
 		var settings = $.extend( {
 			'display'	: '#results',
 			'colorize'	: true,
-			'showBits'	: true
+			'showBits'	: true,
+			'strengths'	: ['very-weak', 'weak', 'medium', 'strong', 'very-strong']
 		}, options);
 
 		return this.each(function() {
@@ -23,9 +24,10 @@
 					total,
 					a,
 					b,
+					entropy,
 					strength,
-					color,
 					result;
+
 				//---calculate weight
 				pass = $(this).val();
 				len = pass.length;
@@ -49,29 +51,27 @@
 				total = upper + lower + number + symbol;
 				a = total.toFixed(2);
 				b = len.toFixed(2);
-				strength = (b * Math.log(a) / Math.log(2)).toFixed(0);
-				if(isNaN(strength)) {
-					strength = 0;
+				entropy = (b * Math.log(a) / Math.log(2)).toFixed(0);
+				if(isNaN(entropy)) {
+					entropy = 0;
 				}
 				//---calculate strength
-				if(strength > 75) {
-					color = 'very-strong';
-				} else if(strength <= 75 && strength > 50) {
-					color = 'strong';
-				} else if(strength <= 50 && strength > 25) {
-					color = 'medium';
-				} else if(strength <= 25 && strength > 5) {
-					color = 'weak';
+				if(entropy > 75) {
+					strength = 4;
+				} else if(entropy <= 75 && entropy > 50) {
+					strength = 3;
+				} else if(entropy <= 50 && entropy > 25) {
+					strength = 2;
+				} else if(entropy <= 25 && entropy > 5) {
+					strength = 1;
 				} else {
-					color = 'very-weak';
-				}
-				//---setup output
-				result = settings.showBits ? strength+' bits = '+color.replace('-',' ') : color.replace('-',' ');
-				if(settings.colorize) {
-					result = '<span class="'+color+'">'+result+'</span>';
+					strength = 0;
 				}
 				//---display results
-				$(settings.display).html(result);
+				if(colorize) {
+					$(settings.display).removeClass(settings.strengths.join(' ')).addClass(settings.strengths[strength]);					
+				}
+				$(settings.display).html(settings.showBits ? entropy+' bits = '+settings.strengths[strength].replace('-',' ') : settings.strengths[strength].replace('-',' '));
 			});
 		});
 	};
