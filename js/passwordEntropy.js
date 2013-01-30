@@ -2,7 +2,9 @@
 	$.fn.passwordEntropy = function(options) {
 
 		var settings = $.extend( {
-			'display' : '#results'
+			'display'	: '#results',
+			'colorize'	: true,
+			'showBits'	: true
 		}, options);
 
 		return this.each(function() {
@@ -13,15 +15,16 @@
 					upperCount,
 					numCount,
 					symbolCount,
-					upper,
-					lower,
-					number,
-					symbol,
+					upper=0,
+					lower=0,
+					number=0,
+					symbol=0,
 					total,
 					a,
 					b,
 					strength,
-					color;
+					color,
+					result;
 
 				pass = $(this).val();
 				len = pass.length;
@@ -29,10 +32,6 @@
 				upperCount = pass.match(/[A-Z]/) ? pass.match(/[A-Z]/g).length : 0;
 				numCount = pass.match(/[0-9]/) ? pass.match(/[0-9]/g).length : 0;
 				symbolCount = len - (lowerCount + upperCount + numCount);
-				upper = 0;
-				lower = 0;
-				number = 0;
-				symbol = 0;
 				if(upperCount > 0) {
 					upper = (26 - upperCount) + upperCount;
 				}
@@ -63,7 +62,11 @@
 				} else {
 					color = 'very-weak';
 				}
-				$(settings.display).html('<span class="'+color+'">'+strength+' bits = '+color.replace('-',' ')+'</span>');
+				result = settings.showBits ? strength+' bits = '+color.replace('-',' ') : color.replace('-',' ');
+				if(settings.colorize) {
+					result = '<span class="'+color+'">'+result+'</span>';
+				}
+				$(settings.display).html(result);
 			});
 		});
 	};

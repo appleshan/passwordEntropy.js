@@ -15,7 +15,7 @@
 			</div>
 			<div class="row">
 				<div class="col lbl">entropy:</div>
-				<div class="col" id="resultz"><span class="very-weak">0 bits = very weak</span></div>
+				<div class="col" id="results"><span class="very-weak">0 bits = very weak</span></div>
 			</div>
 		</div>
 		<div id="footer">download the code: <a href="http://code.xero.nu/passwordEntropy.js">xero.nu</a> / <a href="http://github.com/xero/passwordEntropy.js">github</a></div>
@@ -25,7 +25,11 @@
   		<script type="text/javascript">
   			(function($) {
 				$(document).ready(function(){
-					$('#pass').passwordEntropy({'display':'#resultz'});
+					$('#pass').passwordEntropy({
+						'display':'#results',
+						'colorize':true,
+						'showBits':true
+					});
 				});
 			})(jQuery);
   		</script>
